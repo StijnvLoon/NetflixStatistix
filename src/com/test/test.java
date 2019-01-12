@@ -1,7 +1,7 @@
 package com.test;
 
 public class test {
-    private int test2;
+    private int test3;
 
 
 }

@@ -6,7 +6,8 @@ public class Film extends Program{
     private String language;
     private int ageRestriction;
 
-    public Film(String category, String language, int ageRestriction) {
+    public Film(int id, String title, int duration, String category, String language, int ageRestriction) {
+        super(id, title, duration);
         this.category = category;
         this.language = language;
         this.ageRestriction = ageRestriction;

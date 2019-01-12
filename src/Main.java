@@ -1,6 +1,11 @@
+import GUI.UserInterface;
+
+import javax.swing.*;
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Kaas blijftasdgsgsdgsd zoogdier");
+        UserInterface ui = new UserInterface();
+        ui.start();
     }
 }

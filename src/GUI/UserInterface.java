@@ -1,5 +1,7 @@
 package GUI;
 
+import com.sun.xml.internal.messaging.saaj.soap.JpegDataContentHandler;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -22,5 +24,31 @@ public class UserInterface {
     }
 
     private void createComponents(Container container) {
+
+        BorderLayout layout = new BorderLayout();
+
+        container.setLayout(layout);
+
+        container.add(createMenu(), BorderLayout.WEST);
+
+    }
+
+    private JPanel createMenu() {
+
+        JButton overzicht1 = new JButton("Overzicht 1");
+        JButton overzicht2 = new JButton("Overzicht 2");
+        JButton overzicht3 = new JButton("Overzicht 3");
+        JButton overzicht4 = new JButton("Overzicht 4");
+        JButton overzicht5 = new JButton("Overzicht 5");
+
+        JPanel menu = new JPanel(new GridLayout(5,1));
+
+        menu.add(overzicht1);
+        menu.add(overzicht2);
+        menu.add(overzicht3);
+        menu.add(overzicht4);
+        menu.add(overzicht5);
+
+        return menu;
     }
 }

@@ -33,8 +33,8 @@ public class UserInterface {
 
         JPanel menu = new JPanel(new GridLayout(6,1));
 
-        JButton overzicht1 = new JButton("Overzicht 1");
-        JButton overzicht2 = new JButton("Overzicht 2");
+        JButton overzicht1 = new JButton("Gemiddeld bekenen % per aflevering");
+        JButton overzicht2 = new JButton("Gemiddeld bekenen % per aflevering + serie");
         JButton overzicht3 = new JButton("Overzicht 3");
         JButton overzicht4 = new JButton("Overzicht 4");
         JButton overzicht5 = new JButton("Overzicht 5");
@@ -55,5 +55,12 @@ public class UserInterface {
         menu.add(overzicht6);
 
         return menu;
+    }
+
+    private void setPanel1(Container container) {
+
+        JPanel panel = new JPanel(new CardLayout(2,1));
+
+        container.add(panel, BorderLayout.CENTER);
     }
 }

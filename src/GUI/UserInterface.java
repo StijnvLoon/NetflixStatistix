@@ -1,7 +1,5 @@
 package GUI;
 
-import com.sun.xml.internal.messaging.saaj.soap.JpegDataContentHandler;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -40,6 +38,12 @@ public class UserInterface {
         JButton overzicht3 = new JButton("Overzicht 3");
         JButton overzicht4 = new JButton("Overzicht 4");
         JButton overzicht5 = new JButton("Overzicht 5");
+
+        overzicht1.addActionListener(new MenuListener(1));
+        overzicht2.addActionListener(new MenuListener(2));
+        overzicht3.addActionListener(new MenuListener(3));
+        overzicht4.addActionListener(new MenuListener(4));
+        overzicht5.addActionListener(new MenuListener(5));
 
         JPanel menu = new JPanel(new GridLayout(5,1));
 

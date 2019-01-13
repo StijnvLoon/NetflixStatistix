@@ -1,6 +1,5 @@
 package GUI;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,7 +14,7 @@ public class MenuListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (buttonClicked == 1) {
-            System.out.println("werkt");
+            System.out.println("werkt1");
 
         } else if (buttonClicked == 2) {
             System.out.println("werkt2");

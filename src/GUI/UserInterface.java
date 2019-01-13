@@ -23,9 +23,7 @@ public class UserInterface {
 
     private void createComponents(Container container) {
 
-        BorderLayout layout = new BorderLayout();
-
-        container.setLayout(layout);
+        container.setLayout(new BorderLayout());
 
         container.add(createMenu(), BorderLayout.WEST);
 

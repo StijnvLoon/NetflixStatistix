@@ -1,5 +1,7 @@
 package GUI;
 
+import GUI.Layouts.FirstLayout;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -63,15 +65,19 @@ public class UserInterface {
 
     public void setPanel1() {
 //        JPanel panel = new JPanel((new GridLayout(3,1)));
-        JPanel panel = new JPanel(new CardLayout(2,1));
+//        JPanel panel = new JPanel(new BorderLayout());
+//
+//        String[] words = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
+//        JComboBox comboBox = new JComboBox(words);
+//
+//        JLabel text = new JLabel("bliep bliep");
+//
+//        panel.add(comboBox, BorderLayout.NORTH);
+//        panel.add(text, BorderLayout.CENTER);
 
-        String[] words = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
-        JComboBox comboBox = new JComboBox(words);
+        FirstLayout fl = new FirstLayout();
 
-
-        panel.add(comboBox);
-
-        this.container.add(panel, BorderLayout.CENTER);
+        this.container.add(fl.createPanel(), BorderLayout.CENTER);
 
         this.frame.pack();
     }

@@ -25,8 +25,11 @@ public class MenuListener implements ActionListener{
         } else if (buttonClicked == 4) {
             System.out.println("werkt4");
 
-        } else {
+        } else if (buttonClicked == 5){
             System.out.println("werkt5");
+
+        } else {
+            System.out.println("werkt6");
         }
     }
 }

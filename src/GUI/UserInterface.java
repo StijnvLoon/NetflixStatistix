@@ -31,25 +31,28 @@ public class UserInterface {
 
     private JPanel createMenu() {
 
+        JPanel menu = new JPanel(new GridLayout(6,1));
+
         JButton overzicht1 = new JButton("Overzicht 1");
         JButton overzicht2 = new JButton("Overzicht 2");
         JButton overzicht3 = new JButton("Overzicht 3");
         JButton overzicht4 = new JButton("Overzicht 4");
         JButton overzicht5 = new JButton("Overzicht 5");
+        JButton overzicht6 = new JButton("Overzicht 6");
 
         overzicht1.addActionListener(new MenuListener(1));
         overzicht2.addActionListener(new MenuListener(2));
         overzicht3.addActionListener(new MenuListener(3));
         overzicht4.addActionListener(new MenuListener(4));
         overzicht5.addActionListener(new MenuListener(5));
-
-        JPanel menu = new JPanel(new GridLayout(5,1));
+        overzicht6.addActionListener(new MenuListener(6));
 
         menu.add(overzicht1);
         menu.add(overzicht2);
         menu.add(overzicht3);
         menu.add(overzicht4);
         menu.add(overzicht5);
+        menu.add(overzicht6);
 
         return menu;
     }

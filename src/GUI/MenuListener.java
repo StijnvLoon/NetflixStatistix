@@ -6,15 +6,18 @@ import java.awt.event.ActionListener;
 public class MenuListener implements ActionListener{
 
     private int buttonClicked;
+    private UserInterface ui;
 
-    public MenuListener(int buttonClicked) {
+    public MenuListener(int buttonClicked, UserInterface ui) {
         this.buttonClicked = buttonClicked;
+        this.ui = ui;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (buttonClicked == 1) {
             System.out.println("werkt1");
+            ui.setPanel1();
 
         } else if (buttonClicked == 2) {
             System.out.println("werkt2");

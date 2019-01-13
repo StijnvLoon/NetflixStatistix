@@ -5,8 +5,10 @@ import java.awt.*;
 
 public class UserInterface {
     private JFrame frame;
+    private Container container;
 
     public UserInterface() {
+        this.container = new Container();
     }
 
     public void start() {
@@ -34,18 +36,18 @@ public class UserInterface {
         JPanel menu = new JPanel(new GridLayout(6,1));
 
         JButton overzicht1 = new JButton("Gemiddeld bekenen % per aflevering");
-        JButton overzicht2 = new JButton("Gemiddeld bekenen % per aflevering + serie");
+        JButton overzicht2 = new JButton("Gemiddeld bekenen % per aflevering + account");
         JButton overzicht3 = new JButton("Overzicht 3");
         JButton overzicht4 = new JButton("Overzicht 4");
         JButton overzicht5 = new JButton("Overzicht 5");
         JButton overzicht6 = new JButton("Overzicht 6");
 
-        overzicht1.addActionListener(new MenuListener(1));
-        overzicht2.addActionListener(new MenuListener(2));
-        overzicht3.addActionListener(new MenuListener(3));
-        overzicht4.addActionListener(new MenuListener(4));
-        overzicht5.addActionListener(new MenuListener(5));
-        overzicht6.addActionListener(new MenuListener(6));
+        overzicht1.addActionListener(new MenuListener(1, this));
+        overzicht2.addActionListener(new MenuListener(2, this));
+        overzicht3.addActionListener(new MenuListener(3, this));
+        overzicht4.addActionListener(new MenuListener(4, this));
+        overzicht5.addActionListener(new MenuListener(5, this));
+        overzicht6.addActionListener(new MenuListener(6, this));
 
         menu.add(overzicht1);
         menu.add(overzicht2);
@@ -57,7 +59,7 @@ public class UserInterface {
         return menu;
     }
 
-    private void setPanel1(Container container) {
+    public void setPanel1() {
 
         JPanel panel = new JPanel(new CardLayout(2,1));
 

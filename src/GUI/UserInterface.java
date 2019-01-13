@@ -65,17 +65,6 @@ public class UserInterface {
     }
 
     public void setPanel1() {
-//        JPanel panel = new JPanel((new GridLayout(3,1)));
-//        JPanel panel = new JPanel(new BorderLayout());
-//
-//        String[] words = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
-//        JComboBox comboBox = new JComboBox(words);
-//
-//        JLabel text = new JLabel("bliep bliep");
-//
-//        panel.add(comboBox, BorderLayout.NORTH);
-//        panel.add(text, BorderLayout.CENTER);
-
         FirstLayout fl = new FirstLayout();
 
         this.container.add(fl.createPanel(), BorderLayout.CENTER);

@@ -29,7 +29,7 @@ public class FirstLayout {
         JComboBox comboBox = new JComboBox(testwords);
         JLabel text = new JLabel(this.text);
 
-        comboBox.addActionListener(new ComboboxListener());
+        comboBox.addActionListener(new ComboboxListener(this));
 
         panel.add(comboBox, BorderLayout.NORTH);
         panel.add(text, BorderLayout.CENTER);

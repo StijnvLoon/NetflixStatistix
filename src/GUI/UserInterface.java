@@ -11,25 +11,25 @@ public class UserInterface {
     }
 
     public void start() {
-        frame = new JFrame("Netflix Statistics");
+        this.frame = new JFrame("Netflix Statistics");
 
         this.container = frame.getContentPane();
 
-        frame.setPreferredSize(new Dimension(800, 700));
+        this.frame.setPreferredSize(new Dimension(800, 700));
 
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        createComponents(this.container);
+        createComponents();
 
-        frame.pack();
-        frame.setVisible(true);
+        this.frame.pack();
+        this.frame.setVisible(true);
     }
 
-    private void createComponents(Container container) {
+    private void createComponents() {
 
-        container.setLayout(new BorderLayout());
+        this.container.setLayout(new BorderLayout());
 
-        container.add(createMenu(), BorderLayout.WEST);
+        this.container.add(createMenu(), BorderLayout.WEST);
 
     }
 
@@ -69,6 +69,8 @@ public class UserInterface {
 
         panel.add(testButton);
 
-        this.container.add(panel, BorderLayout.EAST);
+        this.container.add(testButton, BorderLayout.EAST);
+
+        this.frame.pack();
     }
 }

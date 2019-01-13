@@ -1,5 +1,7 @@
 package GUI.Layouts;
 
+import GUI.Listeners.ComboboxListener;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -26,6 +28,8 @@ public class FirstLayout {
         String[] testwords = {"kaas", "zoogdier"};              //DIT IS VOOR DE TEST
         JComboBox comboBox = new JComboBox(testwords);
         JLabel text = new JLabel(this.text);
+
+        comboBox.addActionListener(new ComboboxListener());
 
         panel.add(comboBox, BorderLayout.NORTH);
         panel.add(text, BorderLayout.CENTER);

@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NullPointerException {
         UserInterface ui = new UserInterface();
         ui.start();
     }

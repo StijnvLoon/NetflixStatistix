@@ -8,16 +8,18 @@ public class UserInterface {
     private Container container;
 
     public UserInterface() {
-        this.container = new Container();
     }
 
     public void start() {
         frame = new JFrame("Netflix Statistics");
+
+        this.container = frame.getContentPane();
+
         frame.setPreferredSize(new Dimension(800, 700));
 
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        createComponents(frame.getContentPane());
+        createComponents(this.container);
 
         frame.pack();
         frame.setVisible(true);

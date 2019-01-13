@@ -13,7 +13,7 @@ public class UserInterface {
     public void start() {
         this.frame = new JFrame("Netflix Statistics");
 
-        this.container = frame.getContentPane();
+        this.container = this.frame.getContentPane();
 
         this.frame.setPreferredSize(new Dimension(800, 700));
 
@@ -62,14 +62,16 @@ public class UserInterface {
     }
 
     public void setPanel1() {
-        JPanel panel = new JPanel((new GridLayout(3,1)));
-//        JPanel panel = new JPanel(new CardLayout(2,1));
+//        JPanel panel = new JPanel((new GridLayout(3,1)));
+        JPanel panel = new JPanel(new CardLayout(2,1));
 
-        JButton testButton = new JButton("test");
+        String[] words = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
+        JComboBox comboBox = new JComboBox(words);
 
-        panel.add(testButton);
 
-        this.container.add(testButton, BorderLayout.EAST);
+        panel.add(comboBox);
+
+        this.container.add(panel, BorderLayout.CENTER);
 
         this.frame.pack();
     }

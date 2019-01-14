@@ -36,6 +36,10 @@ public class UserInterface {
 
     }
 
+    public void update() {
+        this.frame.pack();
+    }
+
     private JPanel createMenu() {
 
         JPanel menu = new JPanel(new GridLayout(6,1));
@@ -64,11 +68,9 @@ public class UserInterface {
         return menu;
     }
 
-    public void setPanel1() {
-        FirstLayout fl = new FirstLayout();
+    public void setPanel1(UserInterface ui) {
+        FirstLayout fl = new FirstLayout(ui);
 
         this.container.add(fl.createPanel(), BorderLayout.CENTER);
-
-        this.frame.pack();
     }
 }

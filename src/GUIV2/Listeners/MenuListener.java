@@ -18,7 +18,7 @@ public class MenuListener implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (buttonClicked == 1) {
-            ui.setPanelLayout1("dit is een test");
+            ui.setPanelLayout1();
             ui.update();
 
         } else if (buttonClicked == 2) {

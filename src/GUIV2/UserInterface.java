@@ -1,5 +1,7 @@
 package GUIV2;
 
+import GUI.Listeners.ComboboxListener;
+import GUIV2.Listeners.Layout1Listener;
 import GUIV2.Listeners.MenuListener;
 
 import javax.swing.*;
@@ -75,14 +77,17 @@ public class UserInterface {
         return menu;
     }
 
-    public void setPanelLayout1(String text) {
+    public void setPanelLayout1() {
+
         JPanel panel = new JPanel(new BorderLayout());
-        this.textArea = new JTextArea(text);
+        this.textArea = new JTextArea(" ");
 
         this.textArea.setEditable(false);
 
         String[] filmList = {"Pirates of the Caribbean: The Curse of the Black Pearl", "Lord of the rings", "Die hard", "The hobbit", "Harry Potter"};
         JComboBox jcb = new JComboBox(filmList);
+
+        jcb.addActionListener(new Layout1Listener(this));
 
         jcb.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
         textArea.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
@@ -91,5 +96,9 @@ public class UserInterface {
         panel.add(this.textArea, BorderLayout.CENTER);
 
         this.container.add(panel, BorderLayout.CENTER);
+    }
+
+    public void changeLayout1(String text) {
+        this.textArea.setText(text);
     }
 }

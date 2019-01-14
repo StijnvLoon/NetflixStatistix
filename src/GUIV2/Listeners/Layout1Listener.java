@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Layout1Listener implements ActionListener {
@@ -62,9 +63,23 @@ public class Layout1Listener implements ActionListener {
 //            endString += "Serie: " + x.getTitle() + "\nVolgnummer: " + x.getEpisodeNumber() + "\nGemiddeld voor: ";
 //        }
 
+        String test = "";
+        try {
+            sqlConnection.connectDatabase("jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=NetflixStatistixMenS;integratedSecurity=true");
+            ResultSet rs = null;
+
+            rs = sqlConnection.executeSql("SELECT TOP 1 Title FROM Program");
+            test += rs.getString("Title");
 
 
-        return "kaas";
+            System.out.println(test);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+
+
+        return test;
     }
 
     private String getRings() {

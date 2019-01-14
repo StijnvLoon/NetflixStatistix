@@ -12,7 +12,7 @@ public class SqlConnection {
     public boolean connectDatabase(String connectionUrl) {
         try{
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            this.connection = DriverManager.getConnection(connectionUrl);
+            this.connection = DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=NetflixStatistixMenS;integratedSecurity=true");
         }
         catch(Exception e)
         {

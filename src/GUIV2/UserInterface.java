@@ -84,7 +84,7 @@ public class UserInterface {
 
         this.textArea.setEditable(false);
 
-        String[] filmList = {"Pirates of the Caribbean: The Curse of the Black Pearl", "Lord of the rings", "Die hard", "The hobbit", "Harry Potter"};
+        String[] filmList = {"Pirates of the Caribbean", "Lord of the rings", "Die hard", "The hobbit", "Harry Potter"};
         JComboBox jcb = new JComboBox(filmList);
 
         jcb.addActionListener(new Layout1Listener(this));

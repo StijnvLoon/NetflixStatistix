@@ -2,10 +2,13 @@ package GUIV2.Listeners;
 
 import Database.SqlConnection;
 import GUIV2.UserInterface;
+import Structure.Episode;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class Layout1Listener implements ActionListener {
 
@@ -26,8 +29,8 @@ public class Layout1Listener implements ActionListener {
         JComboBox cb = (JComboBox)e.getSource();
         String chosenFilm = (String)cb.getSelectedItem();
 
-        if (chosenFilm.equals("Pirates of the Caribbean: The Curse of the Black Pearl")) {
-            ui.changeLayout1(getPirates());
+        if (chosenFilm.equals("Pirates of the Caribbean")) {
+            ui.changeLayout1(getNCIS());
 
         } else if (chosenFilm.equals("Lord of the rings")) {
             ui.changeLayout1(getRings());
@@ -35,11 +38,37 @@ public class Layout1Listener implements ActionListener {
         }
     }
 
-    private String getPirates() {
+    private String getNCIS() {
 
+//        ArrayList<Episode> episodes = new ArrayList<Episode>();
+//
+        // van alle afleveringen in serie Pirates, het volgnummer en gemiddeld bekeken percentage
+//
+//        try {
+//            ResultSet rs = sqlConnection.executeSql("SELECT * FROM Serie WHERE Title ");
+//            while (rs.next()) {
+//                episodes.add(new Episode(rs.getInt("Id"), rs.getString("Title"), rs.getInt("Duration"), rs.getInt("EpisodeNumber")));
+//            }
+//
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//
+//        String endString = "";
+//
+//        for (Episode x : episodes) {
+//
+//
+//            endString += "Serie: " + x.getTitle() + "\nVolgnummer: " + x.getEpisodeNumber() + "\nGemiddeld voor: ";
+//        }
+
+
+
+        return "kaas";
     }
 
     private String getRings() {
 
+        return "Ringon";
     }
 }

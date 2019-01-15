@@ -1,5 +1,4 @@
 import Database.SqlConnection;
-import GUI.UserInterface;
 
 public class Main {
 
@@ -9,7 +8,7 @@ public class Main {
 
         //NetflixStatistixMenS
 
-        GUIV2.UserInterface ui = new GUIV2.UserInterface(connection);
+        GUI.UserInterface ui = new GUI.UserInterface(connection);
         ui.start();
     }
 }

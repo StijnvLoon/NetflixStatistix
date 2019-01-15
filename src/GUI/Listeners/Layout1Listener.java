@@ -1,14 +1,13 @@
-package GUIV2.Listeners;
+package GUI.Listeners;
 
 import Database.SqlConnection;
-import GUIV2.UserInterface;
+import GUI.UserInterface;
 import Structure.Episode;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Layout1Listener implements ActionListener {
@@ -52,7 +51,7 @@ public class Layout1Listener implements ActionListener {
 
         for (Episode x : episodes) {
 
-            endString += "Serie: " + x.getTitle() + "\nVolgnummer: " + x.getEpisodeNumber() + "\nGemiddeld voor: x" + "aantal minuten bekeken\n";
+            endString += "Aflevering: " + x.getTitle() + "\nVolgnummer: " + x.getEpisodeNumber() + "\nGemiddeld voor: x" + "aantal minuten bekeken\n\n";
         }
 
 /*        String test = "";

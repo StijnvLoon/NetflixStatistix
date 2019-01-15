@@ -11,6 +11,8 @@ public class Layout2Listener implements ActionListener {
 
     private UserInterface ui;
     private SqlConnection connection;
+    private String selectedAccount;
+    private String selectedSerie;
 
     public Layout2Listener(UserInterface ui, SqlConnection connection) {
         this.ui = ui;
@@ -19,11 +21,17 @@ public class Layout2Listener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("test");
-        if (e.getSource() == ui.createJcomboboxAccounts()) {
-            JComboBox accounts = (JComboBox)e.getSource();
+
+        JComboBox jcb = (JComboBox)e.getSource();
+        String selectedAccount = "";
+        String selectedSerie = "";
+
+        if (jcb.getName().equals("accounts")) {
+            selectedAccount = (String)jcb.getSelectedItem();
+            System.out.println(selectedAccount);
         } else {
-            JComboBox series = (JComboBox)e.getSource();
+            selectedSerie = (String)jcb.getSelectedItem();
+            System.out.println(selectedSerie);
         }
     }
 }

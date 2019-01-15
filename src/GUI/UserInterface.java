@@ -186,16 +186,19 @@ public class UserInterface {
         serie.setText("Serie:");
 
         JComboBox jcbaccounts = createJcomboboxAccounts();
-//        JComboBox jcbseries = createJcomboboxSeries();
+        JComboBox jcbseries = createJcomboboxSeries();
+
+        jcbaccounts.setName("accounts");
+        jcbseries.setName("series");
 
         Layout2Listener listener = new Layout2Listener(this, this.connection);
         jcbaccounts.addActionListener(listener);
-//        jcbseries.addActionListener(listener);
+        jcbseries.addActionListener(listener);
 
         panelNorth.add(account);
         panelNorth.add(serie);
-        panelNorth.add(createJcomboboxAccounts());
-        panelNorth.add(createJcomboboxSeries());
+        panelNorth.add(jcbaccounts);
+        panelNorth.add(jcbseries);
 
         panel.add(panelNorth, BorderLayout.NORTH);
         panel.add(createJtextArea(), BorderLayout.CENTER);

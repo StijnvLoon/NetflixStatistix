@@ -144,8 +144,10 @@ public class UserInterface {
 
     public void setPanelLayout2() {
         JPanel panel = new JPanel(new BorderLayout());
-        JPanel panelNorth = new JPanel(new GridLayout(1,2));
+        JPanel panelNorth = new JPanel(new GridLayout(2,2));
 
+        panelNorth.add(new JTextField("Account:"));
+        panelNorth.add(new JTextField("Serie:"));
         panelNorth.add(createJcomboboxSeries());
         panelNorth.add(createJcomboboxSeries());
 

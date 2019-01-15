@@ -45,22 +45,25 @@ public class Layout2Listener implements ActionListener {
 
         try {
             ResultSet rs = connection.executeSql("SELECT Episode.Id, Program.Title, Episode.EpisodeNumber, Program.Duration\n" +
-                                                    "FROM Episode JOIN Program on Episode.Id = Program.Id\n" +
-                                                    "JOIN Profile_Program on Program.Id = Profile_Program.Id\n" +
-                                                    "JOIN Profile on Profile.ProfileName = Profile_Program.ProfileName\n" +
-                                                    "JOIN Subscription on Subscription.Name = Profile.Name\n" +
-                                                    "WHERE Episode.TitleOfSerie = '" + this.selectedSerie + "' AND Subscription.Name = '" + this.selectedAccount + "'");
+                    "FROM Episode JOIN Program on Episode.Id = Program.Id\n" +
+                    "WHERE Episode.TitleOfSerie = '" + this.selectedSerie + "';");
             while (rs.next()) {
-                episodes.add(new Episode(rs.getInt("Id"), rs.getString("Title"), rs.getInt("Duration"), rs.getInt("EpisodeNumber")));
+                Episode episode = new Episode(rs.getInt("Id"), rs.getString("Title"), rs.getInt("Duration"), rs.getInt("EpisodeNumber"));
+                ResultSet watchedDurations = connection.executeSql("SELECT WatchedDuration FROM Profile_Program JOIN Program on Program.Id = Profile_Program.Id JOIN Profile on Profile.ProfileName = Profile_Program.ProfileName JOIN Subscription on Subscription.Name = Profile.Name WHERE Program.Title = '" + episode.getTitle() +  "' AND Subscription.Name = '" + this.selectedAccount + "';" );
+                while (watchedDurations.next()){
+                    episode.addWatchedDuration(watchedDurations.getInt("WatchedDuration"));
+                }
+                episodes.add(episode);
             }
+
         } catch (Exception e) {
             System.out.println(e);
         }
 
         String endString = "";
 
-        for (Episode x : episodes) {
-            endString += "Aflevering: " + x.getTitle() + "\nVolgnummer: " + x.getEpisodeNumber() + "\nGemiddeld voor: x" + " aantal minuten bekeken\n\n";
+        for (Episode episode : episodes) {
+            endString += "Aflevering: " + episode.getTitle() + "\nVolgnummer: " + episode.getEpisodeNumber() + "\nGemiddeld " + episode.getAverageWatchedDurationPercentage()+ "% van de afvlevering bekeken.\n\n";
         }
 
         return endString;

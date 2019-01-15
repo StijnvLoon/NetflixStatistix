@@ -26,7 +26,7 @@ public class Layout1Listener implements ActionListener {
         JComboBox cb = (JComboBox)e.getSource();
         String chosenFilm = (String)cb.getSelectedItem();
 
-        ui.changeLayout1(getInfo(chosenFilm));
+        ui.changeLayout(getInfo(chosenFilm));
     }
 
     private String getInfo(String chosenFilm) {

@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 public class UserInterface {
     private JFrame frame;
     private Container container;
-    private JTextArea textArea1;
+    private JTextArea textArea;
     private SqlConnection connection;
 
     public UserInterface(SqlConnection connection) {
@@ -98,14 +98,16 @@ public class UserInterface {
         return menu;
     }
 
-    public void setPanelLayout1() {
+    public JTextArea createJtextArea() {
+        this.textArea = new JTextArea("");
 
-        JPanel panel = new JPanel(new BorderLayout());
-        this.textArea1 = new JTextArea(" ");
+        this.textArea.setEditable(false);
+        this.textArea.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 
-        this.textArea1.setEditable(false);
+        return this.textArea;
+    }
 
-        //Jcombobox opmaken
+    public JComboBox createJcomboboxSeries() {
         String list = "";
         try {
             ResultSet rs = this.connection.executeSql("SELECT Serie.Title FROM Serie;");
@@ -116,8 +118,6 @@ public class UserInterface {
             if (list != null && list.length() > 0 && list.charAt(list.length() - 1) == ',') {
                 list = list.substring(0, list.length() - 1);
             }
-
-
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -127,16 +127,25 @@ public class UserInterface {
         jcb.addActionListener(new Layout1Listener(this, this.connection));
 
         jcb.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
-        textArea1.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 
-        //panelen toevoegen
-        panel.add(jcb, BorderLayout.NORTH);
-        panel.add(this.textArea1, BorderLayout.CENTER);
+        return jcb;
+    }
+
+    public void setPanelLayout1() {
+
+        JPanel panel = new JPanel(new BorderLayout());
+
+        panel.add(createJcomboboxSeries(), BorderLayout.NORTH);
+        panel.add(createJtextArea(), BorderLayout.CENTER);
 
         this.container.add(panel, BorderLayout.CENTER);
     }
 
-    public void changeLayout1(String text) {
-        this.textArea1.setText(text);
+    public void changeLayout(String text) {
+        this.textArea.setText(text);
+    }
+
+    public void setPanelLayout2() {
+
     }
 }

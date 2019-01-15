@@ -98,6 +98,13 @@ public class UserInterface {
         return menu;
     }
 
+    public void resetContainer() {
+        try {
+            this.container.remove(2);
+        } catch (Exception e) {
+        }
+    }
+
     public JTextArea createJtextArea() {
         this.textArea = new JTextArea("");
 
@@ -143,6 +150,7 @@ public class UserInterface {
     }
 
     public void setPanelLayout2() {
+
         JPanel panel = new JPanel(new BorderLayout());
         JPanel panelNorth = new JPanel(new GridLayout(2,2));
 

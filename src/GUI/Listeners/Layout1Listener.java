@@ -29,7 +29,7 @@ public class Layout1Listener implements ActionListener {
         ui.changeLayout(getInfo(chosenFilm));
     }
 
-    private String getInfo(String chosenFilm) {
+    private String getInfo(String ChosenSerie) {
 
         ArrayList<Episode> episodes = new ArrayList<Episode>();
 
@@ -38,9 +38,14 @@ public class Layout1Listener implements ActionListener {
         try {
             ResultSet rs = sqlConnection.executeSql("SELECT Episode.Id, Program.Title, Episode.EpisodeNumber, Program.Duration\n" +
                                                     "FROM Episode JOIN Program on Episode.Id = Program.Id\n" +
-                                                    "WHERE Episode.TitleOfSerie = '" + chosenFilm + "';");
+                                                    "WHERE Episode.TitleOfSerie = '" + ChosenSerie + "';");
             while (rs.next()) {
-                episodes.add(new Episode(rs.getInt("Id"), rs.getString("Title"), rs.getInt("Duration"), rs.getInt("EpisodeNumber")));
+                Episode episode = new Episode(rs.getInt("Id"), rs.getString("Title"), rs.getInt("Duration"), rs.getInt("EpisodeNumber"));
+                ResultSet watchedDurations = sqlConnection.executeSql("SELECT WatchedDuration FROM Profile_Program JOIN Program on Program.Id = Profile_Program.Id WHERE Program.Title = '" + episode.getTitle() +  " '");
+                while (watchedDurations.next()){
+                    episode.addWatchedDuration(watchedDurations.getInt("WatchedDuration"));
+                }
+                episodes.add(episode);
             }
 
         } catch (Exception e) {
@@ -49,9 +54,9 @@ public class Layout1Listener implements ActionListener {
 
         String endString = "";
 
-        for (Episode x : episodes) {
+        for (Episode episode : episodes) {
 
-            endString += "Aflevering: " + x.getTitle() + "\nVolgnummer: " + x.getEpisodeNumber() + "\nGemiddeld voor: x" + "aantal minuten bekeken\n\n";
+            endString += "Aflevering: " + episode.getTitle() + "\nVolgnummer: " + episode.getEpisodeNumber() + "\nGemiddeld " + episode.getAverageWatchedDurationPercentage()+ "% van de afvlevering bekeken.\n\n";
         }
 
 /*        String test = "";

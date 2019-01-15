@@ -37,11 +37,11 @@ public class Layout1Listener implements ActionListener {
         // van alle afleveringen in serie Pirates, het volgnummer en gemiddeld bekeken percentage
 
         try {
-            ResultSet rs = sqlConnection.executeSql("SELECT Episode.Id, Episode.TitleOfSerie, Episode.EpisodeNumber, Program.Duration\n" +
+            ResultSet rs = sqlConnection.executeSql("SELECT Episode.Id, Program.Title, Episode.EpisodeNumber, Program.Duration\n" +
                                                     "FROM Episode JOIN Program on Episode.Id = Program.Id\n" +
                                                     "WHERE Episode.TitleOfSerie = '" + chosenFilm + "';");
             while (rs.next()) {
-                episodes.add(new Episode(rs.getInt("Id"), rs.getString("TitleOfSerie"), rs.getInt("Duration"), rs.getInt("EpisodeNumber")));
+                episodes.add(new Episode(rs.getInt("Id"), rs.getString("Title"), rs.getInt("Duration"), rs.getInt("EpisodeNumber")));
             }
 
         } catch (Exception e) {

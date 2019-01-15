@@ -22,7 +22,7 @@ public class UserInterface {
 
         this.container = this.frame.getContentPane();
 
-        this.frame.setPreferredSize(new Dimension(800, 700));
+        this.frame.setPreferredSize(new Dimension(800, 1040));
 
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,8 +154,8 @@ public class UserInterface {
         JPanel panel = new JPanel(new BorderLayout());
         JPanel panelNorth = new JPanel(new GridLayout(2,2));
 
-        panelNorth.add(new JTextField("Account:"));
-        panelNorth.add(new JTextField("Serie:"));
+        panelNorth.add(new JTextArea("Account:"));
+        panelNorth.add(new JTextArea("Serie:"));
         panelNorth.add(createJcomboboxSeries());
         panelNorth.add(createJcomboboxSeries());
 

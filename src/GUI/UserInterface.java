@@ -3,6 +3,7 @@ package GUI;
 import Database.SqlConnection;
 import GUI.Listeners.Layout1Listener;
 import GUI.Listeners.Layout2Listener;
+import GUI.Listeners.Layout3Listener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -230,9 +231,11 @@ public class UserInterface {
     public void setPanelLayout3() {
 
         JPanel panel = new JPanel(new BorderLayout());
-        JComboBox films = createJcomboboxFilms();
+        JComboBox filmsjcb = createJcomboboxAccounts();
 
-        panel.add(films, BorderLayout.NORTH);
+        filmsjcb.addActionListener(new Layout3Listener(this, this.connection));
+
+        panel.add(filmsjcb, BorderLayout.NORTH);
         panel.add(createJtextArea(), BorderLayout.CENTER);
 
         this.container.add(panel, BorderLayout.CENTER);

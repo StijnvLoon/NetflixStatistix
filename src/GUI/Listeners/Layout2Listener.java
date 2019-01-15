@@ -23,15 +23,16 @@ public class Layout2Listener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         JComboBox jcb = (JComboBox)e.getSource();
-        String selectedAccount = "";
-        String selectedSerie = "";
 
         if (jcb.getName().equals("accounts")) {
-            selectedAccount = (String)jcb.getSelectedItem();
-            System.out.println(selectedAccount);
+            this.selectedAccount = (String)jcb.getSelectedItem();
+
         } else {
-            selectedSerie = (String)jcb.getSelectedItem();
-            System.out.println(selectedSerie);
+            this.selectedSerie = (String)jcb.getSelectedItem();
         }
+    }
+
+    public void getInfo() {
+
     }
 }

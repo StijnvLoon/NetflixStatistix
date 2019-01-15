@@ -86,7 +86,7 @@ public class UserInterface {
 
         JPanel panel = new JPanel(new BorderLayout());
         this.textArea = new JTextArea(" ");
-        JScrollPane scrollPane = new JScrollPane(this.textArea);
+        JScrollBar scrollBar = new JScrollBar();
 
         this.textArea.setEditable(false);
 
@@ -95,7 +95,7 @@ public class UserInterface {
         try {
             ResultSet rs = this.connection.executeSql("SELECT Serie.Title FROM Serie;");
             while (rs.next()) {
-                list += "\"" + rs.getString("Title") + "\",";
+                list += rs.getString("Title") + "," ;
             }
 
             if (list != null && list.length() > 0 && list.charAt(list.length() - 1) == ',') {
@@ -106,12 +106,8 @@ public class UserInterface {
         } catch (Exception e) {
             System.out.println(e);
         }
-        System.out.println(list);
 
-        String[] filmList = {list};
-        System.out.println(filmList);
-
-        JComboBox jcb = new JComboBox(filmList);
+        JComboBox jcb = new JComboBox(list.split(","));
 
         jcb.addActionListener(new Layout1Listener(this, this.connection));
 
@@ -121,7 +117,7 @@ public class UserInterface {
         //panelen toevoegen
         panel.add(jcb, BorderLayout.NORTH);
         panel.add(this.textArea, BorderLayout.CENTER);
-        panel.add(scrollPane, BorderLayout.EAST);
+        panel.add(scrollBar, BorderLayout.EAST);
 
         this.container.add(panel, BorderLayout.CENTER);
     }

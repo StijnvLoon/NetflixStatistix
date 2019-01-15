@@ -18,6 +18,7 @@ public class Layout1Listener implements ActionListener {
 
     public Layout1Listener(UserInterface ui) {
         this.ui = ui;
+        this.sqlConnection = new SqlConnection();
     }
 
     public Layout1Listener(SqlConnection sqlConnection) {
@@ -65,10 +66,10 @@ public class Layout1Listener implements ActionListener {
 
         String test = "";
         try {
-            sqlConnection.connectDatabase("jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=NetflixStatistixMenS;integratedSecurity=true");
+            this.sqlConnection.connectDatabase("jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=NetflixStatistixMenS;integratedSecurity=true");
             ResultSet rs = null;
 
-            rs = sqlConnection.executeSql("SELECT TOP 1 Title FROM Program");
+            rs = this.sqlConnection.executeSql("SELECT TOP 1 Title FROM Program");
             test += rs.getString("Title");
 
 

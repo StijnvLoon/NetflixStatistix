@@ -16,13 +16,9 @@ public class Layout1Listener implements ActionListener {
     private UserInterface ui;
     private SqlConnection sqlConnection;
 
-    public Layout1Listener(UserInterface ui) {
+    public Layout1Listener(UserInterface ui, SqlConnection connection) {
         this.ui = ui;
-        this.sqlConnection = new SqlConnection();
-    }
-
-    public Layout1Listener(SqlConnection sqlConnection) {
-        this.sqlConnection = sqlConnection;
+        this.sqlConnection = connection;
     }
 
     @Override
@@ -31,56 +27,51 @@ public class Layout1Listener implements ActionListener {
         JComboBox cb = (JComboBox)e.getSource();
         String chosenFilm = (String)cb.getSelectedItem();
 
-        if (chosenFilm.equals("Pirates of the Caribbean")) {
-            ui.changeLayout1(getNCIS());
-
-        } else if (chosenFilm.equals("Lord of the rings")) {
-            ui.changeLayout1(getRings());
-
-        }
+        ui.changeLayout1(getInfo(chosenFilm));
     }
 
-    private String getNCIS() {
+    private String getInfo(String chosenFilm) {
 
-//        ArrayList<Episode> episodes = new ArrayList<Episode>();
-//
+        ArrayList<Episode> episodes = new ArrayList<Episode>();
+
         // van alle afleveringen in serie Pirates, het volgnummer en gemiddeld bekeken percentage
-//
-//        try {
-//            ResultSet rs = sqlConnection.executeSql("SELECT * FROM Serie WHERE Title ");
-//            while (rs.next()) {
-//                episodes.add(new Episode(rs.getInt("Id"), rs.getString("Title"), rs.getInt("Duration"), rs.getInt("EpisodeNumber")));
-//            }
-//
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//
-//        String endString = "";
-//
-//        for (Episode x : episodes) {
-//
-//
-//            endString += "Serie: " + x.getTitle() + "\nVolgnummer: " + x.getEpisodeNumber() + "\nGemiddeld voor: ";
-//        }
 
-        String test = "";
         try {
-            this.sqlConnection.connectDatabase("jdbc:sqlserver://localhost\\SQLEXPRESS;databaseName=NetflixStatistixMenS;integratedSecurity=true");
+            ResultSet rs = sqlConnection.executeSql("SELECT Episode.Id, Episode.TitleOfSerie, Episode.EpisodeNumber, Program.Duration\n" +
+                                                    "FROM Episode JOIN Program on Episode.Id = Program.Id\n" +
+                                                    "WHERE Episode.TitleOfSerie = '" + chosenFilm + "';");
+            while (rs.next()) {
+                episodes.add(new Episode(rs.getInt("Id"), rs.getString("TitleOfSerie"), rs.getInt("Duration"), rs.getInt("EpisodeNumber")));
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        String endString = "";
+
+        for (Episode x : episodes) {
+
+            endString += "Serie: " + x.getTitle() + "\nVolgnummer: " + x.getEpisodeNumber() + "\nGemiddeld voor: x" + "aantal minuten bekeken\n";
+        }
+
+/*        String test = "";
+        try {
             ResultSet rs = null;
 
             rs = this.sqlConnection.executeSql("SELECT TOP 1 Title FROM Program");
+            rs.next();
             test += rs.getString("Title");
 
 
             System.out.println(test);
         } catch (Exception e) {
             System.out.println(e);
-        }
+        }*/
 
 
 
-        return test;
+        return endString;
     }
 
     private String getRings() {

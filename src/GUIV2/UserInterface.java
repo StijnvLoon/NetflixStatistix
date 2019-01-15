@@ -1,18 +1,23 @@
 package GUIV2;
 
+import Database.SqlConnection;
 import GUI.Listeners.ComboboxListener;
 import GUIV2.Listeners.Layout1Listener;
 import GUIV2.Listeners.MenuListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class UserInterface {
     private JFrame frame;
     private Container container;
     private JTextArea textArea;
+    private SqlConnection connection;
 
-    public UserInterface() {
+    public UserInterface(SqlConnection connection) {
+        this.connection = connection;
     }
 
     public void start() {
@@ -54,11 +59,11 @@ public class UserInterface {
         JButton overzicht6 = new JButton("Overzicht 6");
 
         overzicht1.addActionListener(new GUIV2.Listeners.MenuListener(1, this));
-        overzicht2.addActionListener(new MenuListener(2, this));
-        overzicht3.addActionListener(new MenuListener(3, this));
-        overzicht4.addActionListener(new MenuListener(4, this));
-        overzicht5.addActionListener(new MenuListener(5, this));
-        overzicht6.addActionListener(new MenuListener(6, this));
+        overzicht2.addActionListener(new GUIV2.Listeners.MenuListener(2, this));
+        overzicht3.addActionListener(new GUIV2.Listeners.MenuListener(3, this));
+        overzicht4.addActionListener(new GUIV2.Listeners.MenuListener(4, this));
+        overzicht5.addActionListener(new GUIV2.Listeners.MenuListener(5, this));
+        overzicht6.addActionListener(new GUIV2.Listeners.MenuListener(6, this));
 
         overzicht1.setFont(new Font("Arial", Font.BOLD, 14));
         overzicht2.setFont(new Font("Arial", Font.BOLD, 14));
@@ -81,19 +86,42 @@ public class UserInterface {
 
         JPanel panel = new JPanel(new BorderLayout());
         this.textArea = new JTextArea(" ");
+        JScrollPane scrollPane = new JScrollPane(this.textArea);
 
         this.textArea.setEditable(false);
 
-        String[] filmList = {"Pirates of the Caribbean", "Lord of the rings", "Die hard", "The hobbit", "Harry Potter"};
+        //Jcombobox opmaken
+        String list = "";
+        try {
+            ResultSet rs = this.connection.executeSql("SELECT Serie.Title FROM Serie;");
+            while (rs.next()) {
+                list += "\"" + rs.getString("Title") + "\",";
+            }
+
+            if (list != null && list.length() > 0 && list.charAt(list.length() - 1) == ',') {
+                list = list.substring(0, list.length() - 1);
+            }
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        System.out.println(list);
+
+        String[] filmList = {list};
+        System.out.println(filmList);
+
         JComboBox jcb = new JComboBox(filmList);
 
-        jcb.addActionListener(new Layout1Listener(this));
+        jcb.addActionListener(new Layout1Listener(this, this.connection));
 
         jcb.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
         textArea.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 
+        //panelen toevoegen
         panel.add(jcb, BorderLayout.NORTH);
         panel.add(this.textArea, BorderLayout.CENTER);
+        panel.add(scrollPane, BorderLayout.EAST);
 
         this.container.add(panel, BorderLayout.CENTER);
     }

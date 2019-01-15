@@ -5,9 +5,13 @@ public class Episode extends Program{
     private int episodeNumber;
     private Serie serie;
 
-    public Episode(int id, String title, int duration, int episodeNumber, Serie serie) {
+    public Episode(int id, String title, int duration, int episodeNumber) {
         super(id, title, duration);
         this.episodeNumber = episodeNumber;
+    }
+
+    public Episode(int id, String title, int duration, Serie serie) {
+        super(id, title, duration);
         this.serie = serie;
     }
 

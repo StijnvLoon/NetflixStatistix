@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class UserInterface {
     private JFrame frame;
     private Container container;
-    private JTextArea textArea;
+    private JTextArea textArea1;
     private SqlConnection connection;
 
     public UserInterface(SqlConnection connection) {
@@ -39,12 +39,31 @@ public class UserInterface {
 
         this.container.setLayout(new BorderLayout());
 
+        this.container.add(createDescription(), BorderLayout.SOUTH);
+
         this.container.add(createMenu(), BorderLayout.WEST);
 
     }
 
     public void update() {
         this.frame.pack();
+    }
+
+    private JPanel createDescription() {
+        JPanel description = new JPanel(new GridLayout(1,2));
+        JTextArea name = new JTextArea("Netflix Statistix");
+        JTextArea information = new JTextArea("     Informatica 2019 | Klas: b | door: Mark Govers & Stijn van Loon");
+
+        name.setEditable(false);
+        information.setEditable(false);
+
+        name.setFont(new Font("Arial", Font.ITALIC, 13));
+        information.setFont(new Font("Arial", Font.ITALIC, 13));
+
+        description.add(name);
+        description.add(information);
+
+        return description;
     }
 
     private JPanel createMenu() {
@@ -85,10 +104,9 @@ public class UserInterface {
     public void setPanelLayout1() {
 
         JPanel panel = new JPanel(new BorderLayout());
-        this.textArea = new JTextArea(" ");
-        JScrollBar scrollBar = new JScrollBar();
+        this.textArea1 = new JTextArea(" ");
 
-        this.textArea.setEditable(false);
+        this.textArea1.setEditable(false);
 
         //Jcombobox opmaken
         String list = "";
@@ -112,17 +130,16 @@ public class UserInterface {
         jcb.addActionListener(new Layout1Listener(this, this.connection));
 
         jcb.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
-        textArea.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+        textArea1.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 
         //panelen toevoegen
         panel.add(jcb, BorderLayout.NORTH);
-        panel.add(this.textArea, BorderLayout.CENTER);
-        panel.add(scrollBar, BorderLayout.EAST);
+        panel.add(this.textArea1, BorderLayout.CENTER);
 
         this.container.add(panel, BorderLayout.CENTER);
     }
 
     public void changeLayout1(String text) {
-        this.textArea.setText(text);
+        this.textArea1.setText(text);
     }
 }

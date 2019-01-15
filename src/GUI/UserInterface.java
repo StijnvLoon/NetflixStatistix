@@ -157,6 +157,27 @@ public class UserInterface {
         return jcb;
     }
 
+    public JComboBox createJcomboboxFilms() {
+        String list = "";
+        try {
+            ResultSet rs = this.connection.executeSql("SELECT Program.Title FROM Film JOIN Program on Program.Id = Film.Id;");
+            while (rs.next()) {
+                list += rs.getString("Title") + "," ;
+            }
+            if (list != null && list.length() > 0 && list.charAt(list.length() - 1) == ',') {
+                list = list.substring(0, list.length() - 1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        JComboBox jcb = new JComboBox(list.split(","));
+
+        jcb.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+
+        return jcb;
+    }
+
     public void setPanelLayout1() {
 
         JPanel panel = new JPanel(new BorderLayout());
@@ -201,6 +222,17 @@ public class UserInterface {
         panelNorth.add(jcbseries);
 
         panel.add(panelNorth, BorderLayout.NORTH);
+        panel.add(createJtextArea(), BorderLayout.CENTER);
+
+        this.container.add(panel, BorderLayout.CENTER);
+    }
+
+    public void setPanelLayout3() {
+
+        JPanel panel = new JPanel(new BorderLayout());
+        JComboBox films = createJcomboboxFilms();
+
+        panel.add(films, BorderLayout.NORTH);
         panel.add(createJtextArea(), BorderLayout.CENTER);
 
         this.container.add(panel, BorderLayout.CENTER);

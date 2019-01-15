@@ -28,6 +28,9 @@ public class MenuListener implements ActionListener{
             ui.update();
 
         } else if (buttonClicked == 3) {
+            ui.resetContainer();
+            ui.setPanelLayout3();
+            ui.update();
 
         } else if (buttonClicked == 4) {
 

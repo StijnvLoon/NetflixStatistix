@@ -2,6 +2,7 @@ package GUI;
 
 import Database.SqlConnection;
 import GUI.Listeners.Layout1Listener;
+import GUI.Listeners.Layout2Listener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -129,7 +130,28 @@ public class UserInterface {
         }
 
         JComboBox jcb = new JComboBox(list.split(","));
-        jcb.addActionListener(new Layout1Listener(this, this.connection));
+
+        jcb.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+
+        return jcb;
+    }
+
+    public JComboBox createJcomboboxAccounts() {
+        String list = "";
+        try {
+            ResultSet rs = this.connection.executeSql("SELECT Subscription.Name FROM Subscription;");
+            while (rs.next()) {
+                list += rs.getString("Name") + "," ;
+            }
+            if (list != null && list.length() > 0 && list.charAt(list.length() - 1) == ',') {
+                list = list.substring(0, list.length() - 1);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        JComboBox jcb = new JComboBox(list.split(","));
+
         jcb.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 
         return jcb;
@@ -139,7 +161,10 @@ public class UserInterface {
 
         JPanel panel = new JPanel(new BorderLayout());
 
-        panel.add(createJcomboboxSeries(), BorderLayout.NORTH);
+        JComboBox jcb = createJcomboboxSeries();
+        jcb.addActionListener(new Layout1Listener(this, this.connection));
+
+        panel.add(jcb, BorderLayout.NORTH);
         panel.add(createJtextArea(), BorderLayout.CENTER);
 
         this.container.add(panel, BorderLayout.CENTER);
@@ -154,9 +179,22 @@ public class UserInterface {
         JPanel panel = new JPanel(new BorderLayout());
         JPanel panelNorth = new JPanel(new GridLayout(2,2));
 
-        panelNorth.add(new JTextArea("Account:"));
-        panelNorth.add(new JTextArea("Serie:"));
-        panelNorth.add(createJcomboboxSeries());
+        JTextArea account = createJtextArea();
+        JTextArea serie = createJtextArea();
+
+        account.setText("Account:");
+        serie.setText("Serie:");
+
+        JComboBox jcbaccounts = createJcomboboxAccounts();
+//        JComboBox jcbseries = createJcomboboxSeries();
+
+        Layout2Listener listener = new Layout2Listener(this, this.connection);
+        jcbaccounts.addActionListener(listener);
+//        jcbseries.addActionListener(listener);
+
+        panelNorth.add(account);
+        panelNorth.add(serie);
+        panelNorth.add(createJcomboboxAccounts());
         panelNorth.add(createJcomboboxSeries());
 
         panel.add(panelNorth, BorderLayout.NORTH);

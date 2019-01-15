@@ -114,7 +114,6 @@ public class UserInterface {
             while (rs.next()) {
                 list += rs.getString("Title") + "," ;
             }
-
             if (list != null && list.length() > 0 && list.charAt(list.length() - 1) == ',') {
                 list = list.substring(0, list.length() - 1);
             }
@@ -123,9 +122,7 @@ public class UserInterface {
         }
 
         JComboBox jcb = new JComboBox(list.split(","));
-
         jcb.addActionListener(new Layout1Listener(this, this.connection));
-
         jcb.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
 
         return jcb;
@@ -146,6 +143,15 @@ public class UserInterface {
     }
 
     public void setPanelLayout2() {
+        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panelNorth = new JPanel(new GridLayout(1,2));
 
+        panelNorth.add(createJcomboboxSeries());
+        panelNorth.add(createJcomboboxSeries());
+
+        panel.add(panelNorth, BorderLayout.NORTH);
+        panel.add(createJtextArea(), BorderLayout.CENTER);
+
+        this.container.add(panel, BorderLayout.CENTER);
     }
 }

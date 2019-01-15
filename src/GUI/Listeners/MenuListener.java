@@ -22,6 +22,8 @@ public class MenuListener implements ActionListener{
             ui.update();
 
         } else if (buttonClicked == 2) {
+            ui.setPanelLayout2();
+            ui.update();
 
         } else if (buttonClicked == 3) {
 

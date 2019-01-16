@@ -17,7 +17,7 @@ public class Subscription {
         return this.name;
     }
 
-    public String address(){
+    public String getAaddress(){
         return this.address;
     }
 

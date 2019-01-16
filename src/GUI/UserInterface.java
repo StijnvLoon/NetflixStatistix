@@ -1,10 +1,7 @@
 package GUI;
 
 import Database.SqlConnection;
-import GUI.Listeners.Layout1Listener;
-import GUI.Listeners.Layout2Listener;
-import GUI.Listeners.Layout3Listener;
-import GUI.Listeners.Layout4Listener;
+import GUI.Listeners.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -277,5 +274,41 @@ public class UserInterface {
         panel.add(createJtextArea(), BorderLayout.CENTER);
 
         this.container.add(panel, BorderLayout.CENTER);
+    }
+
+    public void setPanelLayout5() {
+
+        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panelNorth = new JPanel(new GridLayout(2,0));
+        JPanel panelNorthNorth = new JPanel(new GridLayout(1,3));
+        JPanel panelNotNorth = new JPanel();
+
+        JTextArea first = createJtextArea();
+        first.setText("Geef de account(s) met: ");
+        JTextArea second = new JTextArea("vul een nummer in");
+        JTextArea third = createJtextArea();
+        third.setText("profiel(en)");
+
+        JButton searchButton = new JButton("Zoek!");
+
+        second.setFont(new Font("Arial", Font.BOLD, 16));
+        second.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        searchButton.setFont(new Font("Arial", Font.BOLD, 20));
+
+        searchButton.addActionListener(new Layout5Listener(this, this.connection, second));
+
+        panelNorthNorth.add(first);
+        panelNorthNorth.add(second);
+        panelNorthNorth.add(third);
+        panelNotNorth.add(searchButton);
+
+        panelNorth.add(panelNorthNorth);
+        panelNorth.add(panelNotNorth);
+
+        panel.add(panelNorth, BorderLayout.NORTH);
+        panel.add(createJtextArea(), BorderLayout.CENTER);
+
+        this.container.add(panel, BorderLayout.CENTER);
+
     }
 }

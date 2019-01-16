@@ -4,6 +4,7 @@ import Database.SqlConnection;
 import GUI.Listeners.Layout1Listener;
 import GUI.Listeners.Layout2Listener;
 import GUI.Listeners.Layout3Listener;
+import GUI.Listeners.Layout4Listener;
 
 import javax.swing.*;
 import java.awt.*;
@@ -72,7 +73,7 @@ public class UserInterface {
         JButton overzicht1 = new JButton("Afleveringen");
         JButton overzicht2 = new JButton("Afleveringen met account");
         JButton overzicht3 = new JButton("Bekeken films door accounts");
-        JButton overzicht4 = new JButton("Langste film");
+        JButton overzicht4 = new JButton("<html>Zoek een film voor <br />onder de 16 jaar</html>");
         JButton overzicht5 = new JButton("Accounts met x profiel(en)");
         JButton overzicht6 = new JButton("Aantal kijkers per film");
 
@@ -249,6 +250,28 @@ public class UserInterface {
         panelNorth.add(filmsjcb);
 
         filmsjcb.addActionListener(new Layout3Listener(this, this.connection));
+
+        panel.add(panelNorth, BorderLayout.NORTH);
+        panel.add(createJtextArea(), BorderLayout.CENTER);
+
+        this.container.add(panel, BorderLayout.CENTER);
+    }
+
+    public void setPanelLayout4() {
+
+        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panelNorth = new JPanel(new GridLayout(2,1));
+        JTextArea textNorth = createJtextArea();
+        textNorth.setText("Maak een keuze:");
+
+        String[] list = {"Zoek de kortste film voor kinderen onder de 16 jaar.", "Zoek de langste film voor kinderen onder de 16 jaar."};
+        JComboBox choicejcb = new JComboBox(list);
+
+        choicejcb.addActionListener(new Layout4Listener(this, this.connection));
+        choicejcb.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+
+        panelNorth.add(textNorth);
+        panelNorth.add(choicejcb);
 
         panel.add(panelNorth, BorderLayout.NORTH);
         panel.add(createJtextArea(), BorderLayout.CENTER);

@@ -71,9 +71,9 @@ public class UserInterface {
 
         JButton overzicht1 = new JButton("Afleveringen");
         JButton overzicht2 = new JButton("Afleveringen met account");
-        JButton overzicht3 = new JButton("Bekeken films");
+        JButton overzicht3 = new JButton("Bekeken films door accounts");
         JButton overzicht4 = new JButton("Langste film");
-        JButton overzicht5 = new JButton("Accounts met 1 profiel");
+        JButton overzicht5 = new JButton("Accounts met x profiel(en)");
         JButton overzicht6 = new JButton("Aantal kijkers per film");
 
         overzicht1.addActionListener(new GUI.Listeners.MenuListener(1, this));
@@ -83,12 +83,13 @@ public class UserInterface {
         overzicht5.addActionListener(new GUI.Listeners.MenuListener(5, this));
         overzicht6.addActionListener(new GUI.Listeners.MenuListener(6, this));
 
-        overzicht1.setFont(new Font("Arial", Font.BOLD, 14));
-        overzicht2.setFont(new Font("Arial", Font.BOLD, 14));
-        overzicht3.setFont(new Font("Arial", Font.BOLD, 14));
-        overzicht4.setFont(new Font("Arial", Font.BOLD, 14));
-        overzicht5.setFont(new Font("Arial", Font.BOLD, 14));
-        overzicht6.setFont(new Font("Arial", Font.BOLD, 14));
+        Font buttonFont = new Font("Arial", Font.BOLD, 14);
+        overzicht1.setFont(buttonFont);
+        overzicht2.setFont(buttonFont);
+        overzicht3.setFont(buttonFont);
+        overzicht4.setFont(buttonFont);
+        overzicht5.setFont(buttonFont);
+        overzicht6.setFont(buttonFont);
 
         menu.add(overzicht1);
         menu.add(overzicht2);
@@ -112,6 +113,7 @@ public class UserInterface {
 
         this.textArea.setEditable(false);
         this.textArea.setFont(new Font("Arial", Font.LAYOUT_LEFT_TO_RIGHT, 14));
+        this.textArea.setWrapStyleWord(true);
 
         return this.textArea;
     }
@@ -182,11 +184,18 @@ public class UserInterface {
     public void setPanelLayout1() {
 
         JPanel panel = new JPanel(new BorderLayout());
+        JPanel panelNorth = new JPanel(new GridLayout(2,1));
 
-        JComboBox jcb = createJcomboboxSeries();
-        jcb.addActionListener(new Layout1Listener(this, this.connection));
+        JTextArea textNorth = createJtextArea();
+        textNorth.setText("Kies een aflevering:");
 
-        panel.add(jcb, BorderLayout.NORTH);
+        JComboBox jcbSeries = createJcomboboxSeries();
+        jcbSeries.addActionListener(new Layout1Listener(this, this.connection));
+
+        panelNorth.add(textNorth);
+        panelNorth.add(jcbSeries);
+
+        panel.add(panelNorth, BorderLayout.NORTH);
         panel.add(createJtextArea(), BorderLayout.CENTER);
 
         this.container.add(panel, BorderLayout.CENTER);
@@ -204,8 +213,8 @@ public class UserInterface {
         JTextArea account = createJtextArea();
         JTextArea serie = createJtextArea();
 
-        account.setText("Account:");
-        serie.setText("Serie:");
+        account.setText("Selecteer een account:");
+        serie.setText("Kies een serie:");
 
         JComboBox jcbaccounts = createJcomboboxAccounts();
         JComboBox jcbseries = createJcomboboxSeries();
@@ -231,11 +240,17 @@ public class UserInterface {
     public void setPanelLayout3() {
 
         JPanel panel = new JPanel(new BorderLayout());
+        JPanel panelNorth = new JPanel(new GridLayout(2,1));
         JComboBox filmsjcb = createJcomboboxAccounts();
+
+        JTextArea textNorth = createJtextArea();
+        textNorth.setText("Selecteer een account:");
+        panelNorth.add(textNorth);
+        panelNorth.add(filmsjcb);
 
         filmsjcb.addActionListener(new Layout3Listener(this, this.connection));
 
-        panel.add(filmsjcb, BorderLayout.NORTH);
+        panel.add(panelNorth, BorderLayout.NORTH);
         panel.add(createJtextArea(), BorderLayout.CENTER);
 
         this.container.add(panel, BorderLayout.CENTER);

@@ -63,7 +63,7 @@ public class Layout2Listener implements ActionListener {
         String endString = "";
 
         for (Episode episode : episodes) {
-            endString += "Aflevering: " + episode.getTitle() + "\nVolgnummer: " + episode.getEpisodeNumber() + "\nGemiddeld " + episode.getAverageWatchedDurationPercentage()+ "% van de afvlevering bekeken.\n\n";
+            endString += "Aflevering: " + episode.getTitle() + "\nVolgnummer: " + episode.getEpisodeNumber() + "\nGemiddeld " + episode.getAverageWatchedDurationPercentage()+ "% van de aflevering bekeken.\n\n";
         }
 
         return endString;

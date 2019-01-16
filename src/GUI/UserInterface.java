@@ -185,7 +185,7 @@ public class UserInterface {
         JPanel panelNorth = new JPanel(new GridLayout(2,1));
 
         JTextArea textNorth = createJtextArea();
-        textNorth.setText("Kies een aflevering:");
+        textNorth.setText("Kies een serie en achterhaal zijn afleveringen:");
 
         JComboBox jcbSeries = createJcomboboxSeries();
         jcbSeries.addActionListener(new Layout1Listener(this, this.connection));
@@ -242,7 +242,7 @@ public class UserInterface {
         JComboBox filmsjcb = createJcomboboxAccounts();
 
         JTextArea textNorth = createJtextArea();
-        textNorth.setText("Selecteer een account:");
+        textNorth.setText("Selecteer een account om de bekeken films ervan te achterhalen:");
         panelNorth.add(textNorth);
         panelNorth.add(filmsjcb);
 
@@ -296,6 +296,8 @@ public class UserInterface {
         searchButton.setFont(new Font("Arial", Font.BOLD, 20));
 
         searchButton.addActionListener(new Layout5Listener(this, this.connection, second));
+
+        panelNotNorth.setBackground(Color.WHITE);
 
         panelNorthNorth.add(first);
         panelNorthNorth.add(second);

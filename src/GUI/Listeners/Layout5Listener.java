@@ -59,7 +59,7 @@ public class Layout5Listener implements ActionListener {
             }
 
             if (endString.equals("")) {
-                endString = "Er is helaas niks gevonden met die voorwaarden";
+                endString = "Er is helaas niks gevonden onder voorwaarden.";
             }
             return endString;
 

@@ -43,6 +43,10 @@ public class MenuListener implements ActionListener{
             ui.update();
 
         } else {
+            ui.resetContainer();
+            ui.setPanelLayout6();
+            ui.update();
+
         }
     }
 }

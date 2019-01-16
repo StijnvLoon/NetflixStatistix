@@ -311,4 +311,23 @@ public class UserInterface {
         this.container.add(panel, BorderLayout.CENTER);
 
     }
+
+    public void setPanelLayout6() {
+
+        JPanel panel = new JPanel(new BorderLayout());
+        JPanel panelNorth = new JPanel(new GridLayout(2,1));
+        JTextArea textNorth = createJtextArea();
+        textNorth.setText("Selecteer een film:");
+
+        JComboBox jcbFilms = createJcomboboxFilms();
+        jcbFilms.addActionListener(new Layout6Listener(this, this.connection));
+
+        panelNorth.add(textNorth);
+        panelNorth.add(jcbFilms);
+
+        panel.add(panelNorth, BorderLayout.NORTH);
+        panel.add(createJtextArea(), BorderLayout.CENTER);
+
+        this.container.add(panel, BorderLayout.CENTER);
+    }
 }

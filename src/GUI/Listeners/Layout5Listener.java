@@ -58,10 +58,13 @@ public class Layout5Listener implements ActionListener {
                 endString += "Naam: " + subscription.getName() + "\nAdres: " + subscription.getAaddress() + "\n\n";
             }
 
+            if (endString.equals("")) {
+                endString = "Er is helaas niks gevonden met die voorwaarden";
+            }
             return endString;
 
         } else {
-            return "EEN NUMMER!!";
+            return "'" + this.number.getText() + "' IS GEEN NUMMER!!";
         }
     }
 }

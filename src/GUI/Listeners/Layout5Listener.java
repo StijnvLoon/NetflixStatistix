@@ -9,6 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.*;
 
 //Wanneer door de gebruiker in de GUI met layout5 een item in de combobox wordt geselecteerd, wordt er vanaf deze class een String gereturned
 //naar de changeLayout() method in UserInterface.
@@ -30,8 +34,28 @@ public class Layout5Listener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        playSound("popsound.wav");
         ui.changeLayout(getInfo());
 
+    }
+
+    public void playSound(String soundName)
+    {
+        try
+        {
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("src\\Sounds\\popsound.wav").getAbsoluteFile( ));
+            Clip clip = AudioSystem.getClip( );
+            clip.open(audioInputStream);
+            FloatControl gainControl =
+                    (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(6.0f);
+            clip.start( );
+        }
+        catch(Exception ex)
+        {
+            System.out.println("Error with playing sound.");
+            ex.printStackTrace( );
+        }
     }
 
     //In deze method wordt alle informatie die horen bij de doorgegeven String en als één grote String gereturned.

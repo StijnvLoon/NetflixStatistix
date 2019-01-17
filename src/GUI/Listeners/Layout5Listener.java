@@ -33,7 +33,7 @@ public class Layout5Listener implements ActionListener {
 
     public String getInfo() {
 
-        if (this.number.getText().matches("[0-9]*")) {
+        if (this.number.getText().matches("[0-5]")) {
 
             ArrayList<Subscription> subscriptions = new ArrayList<Subscription>();
 
@@ -63,6 +63,8 @@ public class Layout5Listener implements ActionListener {
             }
             return endString;
 
+        } else if (this.number.getText().matches("[6-9]*")) {
+            return "Een abbonement kan maar maximaal 5 profielen hebben.";
         } else {
             return "'" + this.number.getText() + "' IS GEEN NUMMER!!";
         }

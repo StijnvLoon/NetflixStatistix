@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Episode extends Program{
 
     private int episodeNumber;
-    private Serie serie;
     private ArrayList<Integer> watchedDurations = new ArrayList<Integer>();
 
     public Episode(int id, String title, int duration, int episodeNumber) {
@@ -28,15 +27,8 @@ public class Episode extends Program{
         return ((totalDuration / this.watchedDurations.size()) / super.getDuration()) * 100;
     }
 
-    public void setSerie(Serie serie) {
-        this.serie = serie;
-    }
-
     public int getEpisodeNumber() {
         return episodeNumber;
     }
 
-    public Serie getSerie() {
-        return serie;
-    }
 }

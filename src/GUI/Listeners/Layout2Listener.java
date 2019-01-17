@@ -45,11 +45,15 @@ public class Layout2Listener implements ActionListener {
 
         try {
             ResultSet rs = connection.executeSql("SELECT Episode.Id, Program.Title, Episode.EpisodeNumber, Program.Duration\n" +
-                    "FROM Episode JOIN Program on Episode.Id = Program.Id\n" +
-                    "WHERE Episode.TitleOfSerie = '" + this.selectedSerie + "';");
+                                                    "FROM Episode JOIN Program on Episode.Id = Program.Id\n" +
+                                                    "WHERE Episode.TitleOfSerie = '" + this.selectedSerie + "';");
             while (rs.next()) {
                 Episode episode = new Episode(rs.getInt("Id"), rs.getString("Title"), rs.getInt("Duration"), rs.getInt("EpisodeNumber"));
-                ResultSet watchedDurations = connection.executeSql("SELECT WatchedDuration FROM Profile_Program JOIN Program on Program.Id = Profile_Program.Id JOIN Profile on Profile.ProfileName = Profile_Program.ProfileName JOIN Subscription on Subscription.Name = Profile.Name WHERE Program.Title = '" + episode.getTitle() +  "' AND Subscription.Name = '" + this.selectedAccount + "';" );
+                ResultSet watchedDurations = connection.executeSql("SELECT WatchedDuration " +
+                                                                        "FROM Profile_Program JOIN Program on Program.Id = Profile_Program.Id " +
+                                                                        "JOIN Profile on Profile.ProfileName = Profile_Program.ProfileName " +
+                                                                        "JOIN Subscription on Subscription.Name = Profile.Name " +
+                                                                        "WHERE Program.Title = '" + episode.getTitle() +  "' AND Subscription.Name = '" + this.selectedAccount + "';" );
                 while (watchedDurations.next()){
                     episode.addWatchedDuration(watchedDurations.getInt("WatchedDuration"));
                 }

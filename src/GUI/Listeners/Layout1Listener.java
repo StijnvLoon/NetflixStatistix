@@ -41,7 +41,9 @@ public class Layout1Listener implements ActionListener {
                                                     "WHERE Episode.TitleOfSerie = '" + ChosenSerie + "';");
             while (rs.next()) {
                 Episode episode = new Episode(rs.getInt("Id"), rs.getString("Title"), rs.getInt("Duration"), rs.getInt("EpisodeNumber"));
-                ResultSet watchedDurations = sqlConnection.executeSql("SELECT WatchedDuration FROM Profile_Program JOIN Program on Program.Id = Profile_Program.Id WHERE Program.Title = '" + episode.getTitle() +  " '");
+                ResultSet watchedDurations = sqlConnection.executeSql("SELECT WatchedDuration " +
+                                                                        "FROM Profile_Program JOIN Program on Program.Id = Profile_Program.Id " +
+                                                                        "WHERE Program.Title = '" + episode.getTitle() +  " '");
                 while (watchedDurations.next()){
                     episode.addWatchedDuration(watchedDurations.getInt("WatchedDuration"));
                 }
@@ -58,28 +60,6 @@ public class Layout1Listener implements ActionListener {
 
             endString += "Volgnummer: " + episode.getEpisodeNumber() + "\nTitle van de aflevering: " + episode.getTitle() + "\nGemiddeld is " + episode.getAverageWatchedDurationPercentage()+ "% van de aflevering bekeken.\n\n";
         }
-
-/*        String test = "";
-        try {
-            ResultSet rs = null;
-
-            rs = this.sqlConnection.executeSql("SELECT TOP 1 Title FROM Program");
-            rs.next();
-            test += rs.getString("Title");
-
-
-            System.out.println(test);
-        } catch (Exception e) {
-            System.out.println(e);
-        }*/
-
-
-
         return endString;
-    }
-
-    private String getRings() {
-
-        return "Ringon";
     }
 }

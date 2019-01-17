@@ -39,8 +39,8 @@ public class Layout4Listener implements ActionListener {
         try {
             ResultSet rs = connection.executeSql("SELECT TOP 1 Program.Title\n" +
                                                 "FROM Program JOIN Film ON Film.Id = Program.Id\n" +
-                                                "             JOIN Profile_Program ON Program.Id = Profile_Program.Id\n" +
-                                                "             JOIN Profile ON Profile.ProfileName = Profile_Program.ProfileName\n" +
+                                                "JOIN Profile_Program ON Program.Id = Profile_Program.Id\n" +
+                                                "JOIN Profile ON Profile.ProfileName = Profile_Program.ProfileName\n" +
                                                 "WHERE Film.AgeRestriction <= 16\n" +
                                                 "ORDER BY Duration " + chosenOption + ";");
             while (rs.next()) {

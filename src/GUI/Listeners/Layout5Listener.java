@@ -5,7 +5,6 @@ import GUI.UserInterface;
 import Structure.Subscription;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
@@ -55,7 +54,7 @@ public class Layout5Listener implements ActionListener {
 
             for (Subscription subscription : subscriptions) {
 
-                endString += "Naam: " + subscription.getName() + "\nAdres: " + subscription.getAaddress() + "\n\n";
+                endString += "Naam: " + subscription.getName() + "\nAdres: " + subscription.getAddress() + "\n\n";
             }
 
             if (endString.equals("")) {
@@ -63,7 +62,7 @@ public class Layout5Listener implements ActionListener {
             }
             return endString;
 
-        } else if (this.number.getText().matches("[6-9]*")) {
+        } else if (this.number.getText().matches("[0-9][0-9]*")) {
             return "Een abbonement kan maar maximaal 5 profielen hebben.";
         } else {
             return "'" + this.number.getText() + "' IS GEEN NUMMER!!";

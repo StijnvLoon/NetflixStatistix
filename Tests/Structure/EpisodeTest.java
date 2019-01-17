@@ -3,10 +3,10 @@ package Structure;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class EpisodeTest {
+class EpisodeTest {
 
     @Test
-    public void testGetAverageWatchedDurationPercentageWithEmptyWatchedDurationReturns0() {
+    void testGetAverageWatchedDurationPercentageWithEmptyWatchedDurationReturns0() {
         //Arrange
         Episode episode = new Episode(2, "Test", 20, 2);
         double expectedResult = 0.0;
@@ -19,7 +19,7 @@ public class EpisodeTest {
     }
 
     @Test
-    public void testGetAverageWatchedDurationPercentageWithWatchedDurations5And10And15Returns10() {
+    void testGetAverageWatchedDurationPercentageWithWatchedDurations5And10And15Returns10() {
         //Arrange
         Episode episode = new Episode(2, "Test", 20, 2);
         double expectedResult = 50.0;

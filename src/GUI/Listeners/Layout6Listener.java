@@ -2,7 +2,6 @@ package GUI.Listeners;
 
 import Database.SqlConnection;
 import GUI.UserInterface;
-import Structure.Episode;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -23,18 +23,6 @@ public class SqlConnection {
         return true;
     }
 
-    public void disconnectDatabase() {
-        if (connection != null) {
-            try {
-                connection.close();
-            }
-            catch(Exception e) {
-                System.out.println(e);
-            }
-            connection=null;
-        }
-    }
-
     public ResultSet executeSql(String sqlQuery) {
         ResultSet rs = null;
         try
@@ -47,16 +35,5 @@ public class SqlConnection {
             System.out.println(e);
         }
         return rs;
-    }
-
-    public void executeSqlNoResult(String sqlQuery) {
-        try
-        {
-            Statement statement = this.connection.createStatement();
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-        }
     }
 }

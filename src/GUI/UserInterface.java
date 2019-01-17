@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.ResultSet;
 
+//In de UserInterface worden alle componenten aangemaakt en ingezet in de verschillende menu's die ook vanaf hier worden aangemaakt.
+//De acties die worden uitgevoerd door de componenten, worden behandeld en gereturned door de Listeners
+
 public class UserInterface {
     private JFrame frame;
     private Container container;
@@ -17,12 +20,14 @@ public class UserInterface {
         this.connection = connection;
     }
 
+    //start de GUI
     public void start() {
         this.frame = new JFrame("Netflix Statistics");
 
         this.container = this.frame.getContentPane();
 
-        this.frame.setPreferredSize(new Dimension(800, 1040));
+        this.frame.setPreferredSize(new Dimension(800, 1035));
+        this.frame.setResizable(false);
 
         this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -32,6 +37,7 @@ public class UserInterface {
         this.frame.setVisible(true);
     }
 
+    //Hiermee worden de standaard onderdelen, die niet veranderen (het menu en de descriptie balk onderaan) in de GUI gezet.
     private void createComponents() {
 
         this.container.setLayout(new BorderLayout());
@@ -42,10 +48,12 @@ public class UserInterface {
 
     }
 
+    //Na elke verandering die plaatsvind, moet het frame geupdate worden, op deze manier kan hij op elk moment geupdate worden zonder al te veel herhaling
     public void update() {
         this.frame.pack();
     }
 
+    //Hiermee wordt de Description balk die je onderaan het programma ziet aangemaakt.
     private JPanel createDescription() {
         JPanel description = new JPanel(new GridLayout(1,2));
         JTextArea name = new JTextArea("Netflix Statistix");
@@ -63,42 +71,45 @@ public class UserInterface {
         return description;
     }
 
+    //Hiermee worden het menu en zijn knoppen aangemaakt
     private JPanel createMenu() {
 
         JPanel menu = new JPanel(new GridLayout(6, 1));
 
-        JButton overzicht1 = new JButton("Afleveringen");
-        JButton overzicht2 = new JButton("Afleveringen met account");
-        JButton overzicht3 = new JButton("Bekeken films door accounts");
-        JButton overzicht4 = new JButton("<html>Zoek een film voor <br />onder de 16 jaar</html>");
-        JButton overzicht5 = new JButton("Accounts met x profiel(en)");
-        JButton overzicht6 = new JButton("Aantal kijkers per film");
+        JButton button1 = new JButton("Afleveringen");
+        JButton button2 = new JButton("Afleveringen met account");
+        JButton button3 = new JButton("Bekeken films door accounts");
+        JButton button4 = new JButton("<html>Zoek een film voor <br />onder de 16 jaar</html>");
+        JButton button5 = new JButton("Accounts met x profiel(en)");
+        JButton button6 = new JButton("Aantal kijkers per film");
 
-        overzicht1.addActionListener(new GUI.Listeners.MenuListener(1, this));
-        overzicht2.addActionListener(new GUI.Listeners.MenuListener(2, this));
-        overzicht3.addActionListener(new GUI.Listeners.MenuListener(3, this));
-        overzicht4.addActionListener(new GUI.Listeners.MenuListener(4, this));
-        overzicht5.addActionListener(new GUI.Listeners.MenuListener(5, this));
-        overzicht6.addActionListener(new GUI.Listeners.MenuListener(6, this));
+        button1.addActionListener(new GUI.Listeners.MenuListener(1, this));
+        button2.addActionListener(new GUI.Listeners.MenuListener(2, this));
+        button3.addActionListener(new GUI.Listeners.MenuListener(3, this));
+        button4.addActionListener(new GUI.Listeners.MenuListener(4, this));
+        button5.addActionListener(new GUI.Listeners.MenuListener(5, this));
+        button6.addActionListener(new GUI.Listeners.MenuListener(6, this));
 
         Font buttonFont = new Font("Arial", Font.BOLD, 14);
-        overzicht1.setFont(buttonFont);
-        overzicht2.setFont(buttonFont);
-        overzicht3.setFont(buttonFont);
-        overzicht4.setFont(buttonFont);
-        overzicht5.setFont(buttonFont);
-        overzicht6.setFont(buttonFont);
+        button1.setFont(buttonFont);
+        button2.setFont(buttonFont);
+        button3.setFont(buttonFont);
+        button4.setFont(buttonFont);
+        button5.setFont(buttonFont);
+        button6.setFont(buttonFont);
 
-        menu.add(overzicht1);
-        menu.add(overzicht2);
-        menu.add(overzicht3);
-        menu.add(overzicht4);
-        menu.add(overzicht5);
-        menu.add(overzicht6);
+        menu.add(button1);
+        menu.add(button2);
+        menu.add(button3);
+        menu.add(button4);
+        menu.add(button5);
+        menu.add(button6);
 
         return menu;
     }
 
+    //Deze method was nodig omdat tekstvelden anders over elkaar heen werden gezet. Er wordt geen exception weergegeven als er een plaatsvind,
+    //omdat wij weten dat wanneer een tekstveld voor het eerst wordt gemaakt, de exception zal plaatsvinden.
     public void resetContainer() {
         try {
             this.container.remove(2);
@@ -106,6 +117,7 @@ public class UserInterface {
         }
     }
 
+    //Voor de meeste tekstvelden die worden aangemaakt gebruiken we deze method, het werd zo wat overzichtelijker en herhalen wordt voorkomen.
     public JTextArea createJtextArea() {
         this.textArea = new JTextArea("");
 
@@ -116,6 +128,8 @@ public class UserInterface {
         return this.textArea;
     }
 
+    //Niet elke JCombobox wordt meerdere keren gebruikt, maar het opzetten van panelen word doormiddel van deze methods een stuk overzichtelijker.
+    //In deze method wordt de JCombobox, ook wel dropdownmenu, aangemaakt die alle 'series' die hij kan vinden in de database laat zien.
     public JComboBox createJcomboboxSeries() {
         String list = "";
         try {
@@ -137,6 +151,7 @@ public class UserInterface {
         return jcb;
     }
 
+    //Hetzelfde als bij createJcomboboxSeries, maar dan met 'Accounts'
     public JComboBox createJcomboboxAccounts() {
         String list = "";
         try {
@@ -158,6 +173,7 @@ public class UserInterface {
         return jcb;
     }
 
+    //Hetzelfde als bij createJcomboboxSeries, maar dan met 'Films'
     public JComboBox createJcomboboxFilms() {
         String list = "";
         try {
@@ -179,6 +195,13 @@ public class UserInterface {
         return jcb;
     }
 
+    //Er is één textArea, die telkens aangepast wordt met deze method. Hij wordt aangeroepen door de Listeners.
+    public void changeLayout(String text) {
+        this.textArea.setText(text);
+    }
+
+    //Wanneer er op button1 in de menu wordt geklikt, wordt deze layout weergegeven.
+    //De onderdelen van de layout zijn gebonden aan Layout1Listener.
     public void setPanelLayout1() {
 
         JPanel panel = new JPanel(new BorderLayout());
@@ -199,10 +222,8 @@ public class UserInterface {
         this.container.add(panel, BorderLayout.CENTER);
     }
 
-    public void changeLayout(String text) {
-        this.textArea.setText(text);
-    }
-
+    //Wanneer er op button2 in de menu wordt geklikt, wordt deze layout weergegeven.
+    //De onderdelen van de layout zijn verbonden aan Layout2Listener.
     public void setPanelLayout2() {
 
         JPanel panel = new JPanel(new BorderLayout());
@@ -235,6 +256,8 @@ public class UserInterface {
         this.container.add(panel, BorderLayout.CENTER);
     }
 
+    //Wanneer er op button3 in de menu wordt geklikt, wordt deze layout weergegeven.
+    //De onderdelen van de layout zijn verbonden aan Layout3Listener.
     public void setPanelLayout3() {
 
         JPanel panel = new JPanel(new BorderLayout());
@@ -254,6 +277,8 @@ public class UserInterface {
         this.container.add(panel, BorderLayout.CENTER);
     }
 
+    //Wanneer er op button4 in de menu wordt geklikt, wordt deze layout weergegeven.
+    //De onderdelen van de layout zijn verbonden aan Layout4Listener.
     public void setPanelLayout4() {
 
         JPanel panel = new JPanel(new BorderLayout());
@@ -276,6 +301,8 @@ public class UserInterface {
         this.container.add(panel, BorderLayout.CENTER);
     }
 
+    //Wanneer er op button5 in de menu wordt geklikt, wordt deze layout weergegeven.
+    //De onderdelen van de layout zijn verbonden aan Layout5Listener.
     public void setPanelLayout5() {
 
         JPanel panel = new JPanel(new BorderLayout());
@@ -314,6 +341,8 @@ public class UserInterface {
 
     }
 
+    //Wanneer er op button6 in de menu wordt geklikt, wordt deze layout weergegeven.
+    //De onderdelen van de layout zijn verbonden aan Layout6Listener.
     public void setPanelLayout6() {
 
         JPanel panel = new JPanel(new BorderLayout());

@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+//Wanneer door de gebruiker in de GUI met layout2 een item in de combobox wordt geselecteerd, wordt er vanaf deze class een String gereturned
+//naar de changeLayout() method in UserInterface.
+
 public class Layout2Listener implements ActionListener {
 
     private UserInterface ui;
@@ -22,6 +25,11 @@ public class Layout2Listener implements ActionListener {
         this.connection = connection;
     }
 
+    //Deze method haalt de geselecteerde items uit de comboboxen op, en zet die om naar een String
+    //Ook wordt het tekstveld aangepast, aan de hand van de geselecteerde items.
+    //Omdat er in desbetreffende layout 2 comboboxen waren, moesten we er iets op verzinnen om ze uit elkaar te halen.
+    //Dit hebben we gedaan door de comboboxen een naam te geven in de UserInterface, en hier die naam op te vragen.
+    //Zo konden we onderscheid maken tussen de verschillende geselecteerde items, en die aan een variable binnen de class binden.
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -37,11 +45,10 @@ public class Layout2Listener implements ActionListener {
         ui.changeLayout(getInfo());
     }
 
+    //In deze method wordt alle informatie die horen bij de gekozen account en serie als één grote String gereturned.
     public String getInfo() {
 
         ArrayList<Episode> episodes = new ArrayList<Episode>();
-
-        // van alle afleveringen in serie Pirates, het volgnummer en gemiddeld bekeken percentage
 
         try {
             ResultSet rs = connection.executeSql("SELECT Episode.Id, Program.Title, Episode.EpisodeNumber, Program.Duration\n" +

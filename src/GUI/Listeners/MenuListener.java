@@ -5,6 +5,8 @@ import GUI.UserInterface;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//Het menu kijkt welk id de knop heeft die ingedrukt wordt, en voert aan de hand van dat id acties uit.
+
 public class MenuListener implements ActionListener{
 
     private int buttonClicked;
@@ -15,6 +17,7 @@ public class MenuListener implements ActionListener{
         this.ui = ui;
     }
 
+    //Aan de hand van het id van de knop, wordt de container gereset, de nieuwe layout neergezet en daarna het frame geupdate.
     @Override
     public void actionPerformed(ActionEvent e) {
         if (buttonClicked == 1) {

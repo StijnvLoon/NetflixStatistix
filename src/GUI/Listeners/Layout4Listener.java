@@ -8,6 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 
+//Wanneer door de gebruiker in de GUI met layout4 een item in de combobox wordt geselecteerd, wordt er vanaf deze class een String gereturned
+//naar de changeLayout() method in UserInterface.
+
 public class Layout4Listener implements ActionListener {
 
     private UserInterface ui;
@@ -18,6 +21,9 @@ public class Layout4Listener implements ActionListener {
         this.connection = connection;
     }
 
+    //Deze method haalt het geselecteerde item uit de combobox op, en aan de hand van het item wordt de opgehaalde informatie d.m.v. getInfo op
+    //volgorde van groot naar klein of andersom gesorteerd.
+    //Ook wordt het tekstveld aangepast, aan de hand van het geselecteerde item.
     @Override
     public void actionPerformed(ActionEvent e) {
         JComboBox cb = (JComboBox)e.getSource();
@@ -32,6 +38,8 @@ public class Layout4Listener implements ActionListener {
         ui.changeLayout(getInfo(chosenOption));
     }
 
+    //In deze method wordt alle informatie die horen bij de gekozen serie en als één grote String gereturned.
+    //Er is hier geen ArrayList nodig omdat er maar om 1 ding wordt gevraagd.
     public String getInfo(String chosenOption) {
 
         String film = "";

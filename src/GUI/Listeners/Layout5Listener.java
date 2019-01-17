@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+//Wanneer door de gebruiker in de GUI met layout5 een item in de combobox wordt geselecteerd, wordt er vanaf deze class een String gereturned
+//naar de changeLayout() method in UserInterface.
+
 public class Layout5Listener implements ActionListener {
 
     private UserInterface ui;
@@ -23,6 +26,7 @@ public class Layout5Listener implements ActionListener {
     }
 
 
+    //Hier wordt de layout aangepast aan de hand van de opgevraagde informatie
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -30,6 +34,9 @@ public class Layout5Listener implements ActionListener {
 
     }
 
+    //In deze method wordt alle informatie die horen bij de doorgegeven String en als één grote String gereturned.
+    //Omdat er meerdere soorten informatie kan worden doorgegeven door de gebruiker, moet daarmee rekening worden gehouden.
+    //Dit hebben we gedaan doormiddel van if-statements.
     public String getInfo() {
 
         if (this.number.getText().matches("[0-5]")) {
@@ -65,7 +72,7 @@ public class Layout5Listener implements ActionListener {
         } else if (this.number.getText().matches("[0-9][0-9]*")) {
             return "Een abbonement kan maar maximaal 5 profielen hebben.";
         } else {
-            return "'" + this.number.getText() + "' IS GEEN NUMMER!!";
+            return "'" + this.number.getText() + "' is geen nummer!";
         }
     }
 }

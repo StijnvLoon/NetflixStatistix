@@ -9,6 +9,9 @@ import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+//Wanneer door de gebruiker in de GUI met layout3 een item in de combobox wordt geselecteerd, wordt er vanaf deze class een String gereturned
+//naar de changeLayout() method in UserInterface.
+
 public class Layout3Listener implements ActionListener {
 
     private UserInterface ui;
@@ -19,6 +22,8 @@ public class Layout3Listener implements ActionListener {
         this.connection = connection;
     }
 
+    //Deze method haalt het geselecteerde item uit de combobox op, en zet die om naar een String
+    //Ook wordt het tekstveld aangepast, aan de hand van het geselecteerde item.
     @Override
     public void actionPerformed(ActionEvent e) {
 

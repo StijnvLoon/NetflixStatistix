@@ -39,6 +39,7 @@ public class Layout5Listener implements ActionListener {
 
     }
 
+    //geluidje wanneer je op de knop drukt
     public void playSound(String soundName)
     {
         try

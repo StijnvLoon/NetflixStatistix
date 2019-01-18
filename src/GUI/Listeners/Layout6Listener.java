@@ -31,7 +31,7 @@ public class Layout6Listener implements ActionListener {
         ui.changeLayout(getInfo(chosenFilm));
     }
 
-    //In deze method wordt alle informatie die horen bij de gekozen film en als één grote String gereturned.
+    //In deze method wordt alle informatie opgevraagt die hoort bij de gekozen film en als één grote String gereturned.
     public String getInfo(String chosenFilm) {
 
         int viewCount = 0;
